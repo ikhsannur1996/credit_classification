@@ -1,0 +1,558 @@
+{
+ "format": "credit-default-json-model",
+ "format_version": 1,
+ "metadata": {
+  "model_name": "logistic_regression",
+  "model_version": "20261007123802",
+  "trained_at": "2026-10-07T12:38:02+00:00",
+  "features": [
+   "age",
+   "credit_score",
+   "monthly_salary",
+   "annual_income",
+   "years_employed",
+   "debt_to_income",
+   "num_credit_lines",
+   "num_late_payments_12m",
+   "loan_amount",
+   "loan_term_months",
+   "interest_rate",
+   "occupation",
+   "employment_type",
+   "employee_status",
+   "marital_status",
+   "education",
+   "home_ownership",
+   "loan_purpose"
+  ],
+  "numeric_features": [
+   "age",
+   "credit_score",
+   "monthly_salary",
+   "annual_income",
+   "years_employed",
+   "debt_to_income",
+   "num_credit_lines",
+   "num_late_payments_12m",
+   "loan_amount",
+   "loan_term_months",
+   "interest_rate"
+  ],
+  "categorical_features": {
+   "occupation": [
+    "civil_servant",
+    "driver_ojol",
+    "entrepreneur",
+    "factory_worker",
+    "private_employee",
+    "professional",
+    "retail_service",
+    "soe_employee",
+    "unemployed"
+   ],
+   "employment_type": [
+    "salaried",
+    "self_employed",
+    "unemployed"
+   ],
+   "employee_status": [
+    "contract",
+    "not_applicable",
+    "outsourcing",
+    "permanent",
+    "probation"
+   ],
+   "marital_status": [
+    "divorced",
+    "married",
+    "single"
+   ],
+   "education": [
+    "bachelor",
+    "diploma",
+    "high_school",
+    "master"
+   ],
+   "home_ownership": [
+    "mortgage",
+    "own",
+    "rent"
+   ],
+   "loan_purpose": [
+    "business",
+    "car",
+    "debt_consolidation",
+    "education",
+    "home_improvement",
+    "personal"
+   ]
+  },
+  "n_features_after_preprocessing": 64,
+  "target": "default",
+  "labels": {
+   "0": "no_default",
+   "1": "default"
+  },
+  "threshold": 0.302,
+  "best_params": {
+   "model__C": 10,
+   "model__class_weight": null
+  },
+  "selection_metric": "roc_auc",
+  "compared_models": {
+   "logistic_regression": 0.8819,
+   "random_forest": 0.8762
+  },
+  "cv_metrics": {
+   "roc_auc": 0.8819,
+   "average_precision": 0.7255,
+   "f1": 0.6199,
+   "recall": 0.5384,
+   "precision": 0.7308
+  },
+  "test_metrics": {
+   "roc_auc": 0.8839,
+   "pr_auc": 0.722,
+   "f1": 0.6554,
+   "recall": 0.7143,
+   "precision": 0.6055,
+   "accuracy": 0.8265
+  },
+  "evaluation": {
+   "repeated_cv_auc": {
+    "mean": 0.8812471900641898,
+    "std": 0.005981368548469943,
+    "ci95": [
+     0.8745992375280933,
+     0.8878951426002863
+    ]
+   },
+   "nested_cv_auc": {
+    "mean": 0.8808398088802282,
+    "ci95": [
+     0.8634970455750965,
+     0.8981825721853598
+    ],
+    "optimism": 0.0010114935922229673
+   },
+   "model_comparison": {
+    "corrected_ttest_p": 0.01609500962905733,
+    "delong_test_p": 0.0620253313782668,
+    "mcnemar_p": 0.7876157667022056
+   },
+   "test_ci95": {
+    "roc_auc": [
+     0.8681926195824115,
+     0.9002580725516357
+    ],
+    "gini": [
+     0.7363852391648229,
+     0.8005161451032714
+    ],
+    "ks": [
+     0.5807959541542116,
+     0.651418114828388
+    ],
+    "pr_auc": [
+     0.686053962414819,
+     0.7579394590993205
+    ],
+    "recall": [
+     0.670995670995671,
+     0.7575757575757576
+    ],
+    "precision": [
+     0.5745755007704161,
+     0.6386898518885976
+    ]
+   },
+   "calibration": {
+    "brier": 0.10941921756923569,
+    "brier_skill_score": 0.38403606432576365,
+    "hosmer_lemeshow_p": 0.16362184778021335,
+    "slope": 0.9741666055544531,
+    "intercept": 0.02444716474612521
+   },
+   "backtest": {
+    "oot_period": "2025Q3\u20132025Q4",
+    "oot_auc": 0.871101675435691,
+    "oot_auc_ci95": [
+     0.8522121434953115,
+     0.8899912073760704
+    ],
+    "intime_auc": 0.8837063930407894,
+    "oot_binomial_p": 0.6586653376213972,
+    "oot_traffic_light": "green",
+    "walk_forward_auc_mean": 0.8761027906252987,
+    "walk_forward_auc_min": 0.8677304964539008,
+    "walk_forward_traffic_lights": {
+     "green": 8
+    },
+    "score_psi": 0.034368697227625034,
+    "max_csi": {
+     "feature": "credit_score",
+     "value": 0.0398141627494009
+    }
+   },
+   "cost_threshold_5to1": 0.15
+  },
+  "library_versions": {
+   "python": "3.14.6",
+   "scikit-learn": "1.9.1",
+   "pandas": "3.0.6",
+   "numpy": "2.4.6"
+  }
+ },
+ "preprocessing": [
+  {
+   "name": "domain_bin",
+   "type": "domain_bin_onehot",
+   "columns": [
+    "age",
+    "credit_score",
+    "monthly_salary"
+   ],
+   "bins": {
+    "age": {
+     "edges": [
+      null,
+      25.0,
+      35.0,
+      45.0,
+      55.0,
+      null
+     ],
+     "labels": [
+      "18-25",
+      "26-35",
+      "36-45",
+      "46-55",
+      "56+"
+     ]
+    },
+    "credit_score": {
+     "edges": [
+      null,
+      579.0,
+      669.0,
+      739.0,
+      799.0,
+      null
+     ],
+     "labels": [
+      "poor",
+      "fair",
+      "good",
+      "very_good",
+      "excellent"
+     ]
+    },
+    "monthly_salary": {
+     "edges": [
+      null,
+      0.0,
+      3.5,
+      5.0,
+      10.0,
+      20.0,
+      null
+     ],
+     "labels": [
+      "no_salary",
+      "below_3.5m",
+      "3.5m-5m",
+      "5m-10m",
+      "10m-20m",
+      "above_20m"
+     ]
+    }
+   },
+   "categories": [
+    [
+     "18-25",
+     "26-35",
+     "36-45",
+     "46-55",
+     "56+"
+    ],
+    [
+     "excellent",
+     "fair",
+     "good",
+     "missing",
+     "poor",
+     "very_good"
+    ],
+    [
+     "10m-20m",
+     "3.5m-5m",
+     "5m-10m",
+     "above_20m",
+     "below_3.5m",
+     "missing",
+     "no_salary"
+    ]
+   ]
+  },
+  {
+   "name": "quantile_bin",
+   "type": "quantile_bin_onehot",
+   "columns": [
+    "annual_income"
+   ],
+   "impute_values": [
+    118.6
+   ],
+   "bin_edges": [
+    [
+     1.1,
+     72.25,
+     102.9,
+     136.6,
+     192.6,
+     1771.9
+    ]
+   ]
+  },
+  {
+   "name": "num",
+   "type": "impute_standard_scale",
+   "columns": [
+    "years_employed",
+    "debt_to_income",
+    "num_credit_lines",
+    "num_late_payments_12m",
+    "loan_amount",
+    "loan_term_months",
+    "interest_rate"
+   ],
+   "impute_values": [
+    5.5,
+    0.287,
+    5.0,
+    0.0,
+    70.7,
+    36.0,
+    12.88
+   ],
+   "mean": [
+    7.301725,
+    0.30570549999999996,
+    4.98575,
+    0.7875,
+    92.83043750000002,
+    37.857,
+    12.89317125
+   ],
+   "scale": [
+    6.858865760778162,
+    0.14425941050673263,
+    1.9882899530752551,
+    1.214225576241911,
+    87.69956898302632,
+    14.808225788392074,
+    2.326772266611719
+   ]
+  },
+  {
+   "name": "cat",
+   "type": "impute_onehot",
+   "columns": [
+    "occupation",
+    "employment_type",
+    "employee_status",
+    "marital_status",
+    "education",
+    "home_ownership",
+    "loan_purpose"
+   ],
+   "fill_value": "missing",
+   "categories": [
+    [
+     "civil_servant",
+     "driver_ojol",
+     "entrepreneur",
+     "factory_worker",
+     "private_employee",
+     "professional",
+     "retail_service",
+     "soe_employee",
+     "unemployed"
+    ],
+    [
+     "salaried",
+     "self_employed",
+     "unemployed"
+    ],
+    [
+     "contract",
+     "not_applicable",
+     "outsourcing",
+     "permanent",
+     "probation"
+    ],
+    [
+     "divorced",
+     "married",
+     "single"
+    ],
+    [
+     "bachelor",
+     "diploma",
+     "high_school",
+     "master",
+     "missing"
+    ],
+    [
+     "mortgage",
+     "own",
+     "rent"
+    ],
+    [
+     "business",
+     "car",
+     "debt_consolidation",
+     "education",
+     "home_improvement",
+     "personal"
+    ]
+   ]
+  }
+ ],
+ "feature_names_out": [
+  "domain_bin__age_bin_18-25",
+  "domain_bin__age_bin_26-35",
+  "domain_bin__age_bin_36-45",
+  "domain_bin__age_bin_46-55",
+  "domain_bin__age_bin_56+",
+  "domain_bin__credit_score_bin_excellent",
+  "domain_bin__credit_score_bin_fair",
+  "domain_bin__credit_score_bin_good",
+  "domain_bin__credit_score_bin_missing",
+  "domain_bin__credit_score_bin_poor",
+  "domain_bin__credit_score_bin_very_good",
+  "domain_bin__monthly_salary_bin_10m-20m",
+  "domain_bin__monthly_salary_bin_3.5m-5m",
+  "domain_bin__monthly_salary_bin_5m-10m",
+  "domain_bin__monthly_salary_bin_above_20m",
+  "domain_bin__monthly_salary_bin_below_3.5m",
+  "domain_bin__monthly_salary_bin_missing",
+  "domain_bin__monthly_salary_bin_no_salary",
+  "quantile_bin__annual_income_0.0",
+  "quantile_bin__annual_income_1.0",
+  "quantile_bin__annual_income_2.0",
+  "quantile_bin__annual_income_3.0",
+  "quantile_bin__annual_income_4.0",
+  "num__years_employed",
+  "num__debt_to_income",
+  "num__num_credit_lines",
+  "num__num_late_payments_12m",
+  "num__loan_amount",
+  "num__loan_term_months",
+  "num__interest_rate",
+  "cat__occupation_civil_servant",
+  "cat__occupation_driver_ojol",
+  "cat__occupation_entrepreneur",
+  "cat__occupation_factory_worker",
+  "cat__occupation_private_employee",
+  "cat__occupation_professional",
+  "cat__occupation_retail_service",
+  "cat__occupation_soe_employee",
+  "cat__occupation_unemployed",
+  "cat__employment_type_salaried",
+  "cat__employment_type_self_employed",
+  "cat__employment_type_unemployed",
+  "cat__employee_status_contract",
+  "cat__employee_status_not_applicable",
+  "cat__employee_status_outsourcing",
+  "cat__employee_status_permanent",
+  "cat__employee_status_probation",
+  "cat__marital_status_divorced",
+  "cat__marital_status_married",
+  "cat__marital_status_single",
+  "cat__education_bachelor",
+  "cat__education_diploma",
+  "cat__education_high_school",
+  "cat__education_master",
+  "cat__education_missing",
+  "cat__home_ownership_mortgage",
+  "cat__home_ownership_own",
+  "cat__home_ownership_rent",
+  "cat__loan_purpose_business",
+  "cat__loan_purpose_car",
+  "cat__loan_purpose_debt_consolidation",
+  "cat__loan_purpose_education",
+  "cat__loan_purpose_home_improvement",
+  "cat__loan_purpose_personal"
+ ],
+ "model": {
+  "type": "logistic_regression",
+  "coef": [
+   -0.09177349457740437,
+   -0.020723311494167267,
+   -0.10792380068879968,
+   -0.14557088125114764,
+   -0.10807110811559918,
+   -2.9289789529562458,
+   0.8808653914556033,
+   -0.11684980326939208,
+   0.4408566873131892,
+   2.2027141388720897,
+   -0.9526700575423594,
+   0.4450059338362353,
+   0.1560722524552697,
+   0.3516773559444291,
+   -0.31498649882854657,
+   0.3241279248655405,
+   0.42831024077639596,
+   -1.8642698051764317,
+   0.2552394868427896,
+   -0.030989303220791888,
+   -0.053794688763240124,
+   -0.25827359940519184,
+   -0.38624449158069446,
+   -0.2733601327150864,
+   0.3760347445814582,
+   -0.05908641565971612,
+   0.6884451509034943,
+   0.36145620543804985,
+   0.012557320679412821,
+   0.4252052332556847,
+   -0.5519222315752185,
+   0.0036898879181650615,
+   0.011848804154009561,
+   -0.037777478866427426,
+   -0.14625887458684397,
+   -0.472920479047395,
+   -0.0017356242396431693,
+   -0.5877014055844658,
+   1.3087148057007025,
+   -0.6928247972326165,
+   -1.0899526045951964,
+   1.3087148057007025,
+   -0.09282447580765489,
+   0.21876220110550518,
+   -0.12075315676198335,
+   -0.5973452500672707,
+   0.11809808540429657,
+   -0.00441698686565671,
+   -0.3071790179418508,
+   -0.16246659131958766,
+   -0.12213542058668403,
+   -0.0009046377519268214,
+   -0.06856453067382089,
+   -0.20153972710159926,
+   -0.08091828001309187,
+   -0.1642194430425988,
+   -0.4149705089367512,
+   0.10512735585223709,
+   0.3545649945438839,
+   -0.31938772125301634,
+   0.10509039097957627,
+   -0.27476449910284656,
+   -0.27592810608347346,
+   -0.06363765521123901
+  ],
+  "intercept": -0.5389137388669091
+ }
+}

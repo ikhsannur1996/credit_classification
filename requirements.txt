@@ -1,0 +1,7 @@
+# Dependensi runtime API (dipakai juga di Docker).
+# Model disimpan sebagai JSON dan inferensi memakai numpy + pandas, jadi tidak perlu scikit-learn/joblib.
+fastapi==0.141.1
+uvicorn[standard]==0.40.0
+pydantic==2.13.4
+numpy==2.4.6
+pandas==3.0.6

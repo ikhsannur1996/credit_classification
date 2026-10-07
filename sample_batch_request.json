@@ -1,0 +1,44 @@
+{
+  "instances": [
+    {
+      "age": 37,
+      "credit_score": 492.0,
+      "monthly_salary": 0.0,
+      "annual_income": 2.1,
+      "years_employed": 0.0,
+      "debt_to_income": 0.366,
+      "num_credit_lines": 6,
+      "num_late_payments_12m": 5,
+      "loan_amount": 5.0,
+      "loan_term_months": 36,
+      "interest_rate": 17.87,
+      "occupation": "unemployed",
+      "employment_type": "unemployed",
+      "employee_status": "not_applicable",
+      "marital_status": "divorced",
+      "education": "bachelor",
+      "home_ownership": "mortgage",
+      "loan_purpose": "home_improvement"
+    },
+    {
+      "age": 40,
+      "credit_score": 805.0,
+      "monthly_salary": 15.73,
+      "annual_income": 229.4,
+      "years_employed": 11.4,
+      "debt_to_income": 0.354,
+      "num_credit_lines": 13,
+      "num_late_payments_12m": 0,
+      "loan_amount": 34.2,
+      "loan_term_months": 60,
+      "interest_rate": 8.71,
+      "occupation": "professional",
+      "employment_type": "salaried",
+      "employee_status": "permanent",
+      "marital_status": "married",
+      "education": "bachelor",
+      "home_ownership": "own",
+      "loan_purpose": "car"
+    }
+  ]
+}

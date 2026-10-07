@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    image: credit-default-api:latest
+    container_name: credit-default-api
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
