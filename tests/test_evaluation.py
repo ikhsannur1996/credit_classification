@@ -105,3 +105,30 @@ def test_corrected_ci_wider_than_naive():
     _, lo_c, hi_c = corrected_mean_ci(v, 6400, 1600)
     _, lo_n, hi_n = mean_ci(v)
     assert (hi_c - lo_c) > (hi_n - lo_n)
+
+
+def test_reference_coding_and_perfect_collinearity():
+    from src.evaluation import gvif, reference_coding, resolve_perfect_collinearity
+    n = 600
+    a = rng.choice(["x", "y", "z"], n, p=[0.5, 0.3, 0.2])
+    b = np.where(a == "x", "p", "q")                     # b sepenuhnya ditentukan oleh a
+    num = rng.normal(size=n)
+    Z = pd.get_dummies(pd.DataFrame({"a": a, "b": b}), dtype=float).assign(num=num)
+    D, groups, refs = reference_coding(Z, {"a": "a_", "b": "b_", "num": "num"})
+    expected_b = "b_p" if (b == "p").sum() >= (b == "q").sum() else "b_q"   # acuan = kategori terbanyak
+    assert refs == {"a": "a_x", "b": expected_b} and "a_x" not in D
+    D2, groups2, dropped = resolve_perfect_collinearity(D, groups)
+    assert dropped == ["b"] and set(groups2) == {"a", "num"}
+    g = gvif(D2, groups2)
+    assert (g["GVIF_adj"] < 1.2).all()
+
+
+def test_gvif_matches_eigenvalue_formula():
+    from src.evaluation import gvif
+    X = pd.DataFrame(rng.normal(size=(500, 4)), columns=list("abcd"))
+    X["c"] = X["a"] * 0.8 + rng.normal(scale=0.3, size=500)
+    groups = {"g1": ["a", "b"], "g2": ["c"], "g3": ["d"]}
+    R = np.corrcoef(X.to_numpy(), rowvar=False)
+    ld = lambda M: np.sum(np.log(np.linalg.eigvalsh(M)))  # noqa: E731
+    expected = np.exp(ld(R[np.ix_([0, 1], [0, 1])]) + ld(R[np.ix_([2, 3], [2, 3])]) - ld(R))
+    assert gvif(X, groups).loc["g1", "GVIF"] == pytest.approx(expected, rel=1e-9)

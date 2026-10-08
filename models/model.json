@@ -3,8 +3,8 @@
  "format_version": 1,
  "metadata": {
   "model_name": "logistic_regression",
-  "model_version": "20261007123802",
-  "trained_at": "2026-10-07T12:38:02+00:00",
+  "model_version": "20261008085726",
+  "trained_at": "2026-10-08T08:57:26+00:00",
   "features": [
    "age",
    "credit_score",

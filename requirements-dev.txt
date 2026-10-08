@@ -1,6 +1,7 @@
 # Untuk training (notebook) & testing
 -r requirements.txt
 scikit-learn==1.9.1
+statsmodels==0.15.0
 scipy==1.18.0
 jupyter
 matplotlib==3.11.2

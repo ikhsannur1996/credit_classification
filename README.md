@@ -3,6 +3,7 @@
 Proyek klasifikasi perbankan dari notebook sampai API: memprediksi apakah pemohon pinjaman akan **gagal bayar (default)**. Dua model dibandingkan, model terbaik disajikan lewat **FastAPI**, lalu dijalankan di **Docker lokal**.
 
 **Highlight:**
+- **Model statistik** sebelum cross-validation: intercept, koefisien, p-value, odds ratio, VIF/GVIF (regresi logistik statsmodels)
 - Dataset **18 kolom fitur** (11 numerik + 7 kategorikal) + target `default`, 10.000 baris, default rate ~23%
 - Termasuk data **pekerjaan** (`occupation`), **gaji bulanan** (`monthly_salary`), dan **status karyawan** (`employee_status`), dengan kombinasi yang divalidasi konsisten di API
 - **Binning** dan **one-hot encoding** ada di dalam `sklearn.Pipeline`, jadi API cukup menerima data mentah
@@ -128,7 +129,9 @@ Isi notebook (21 bagian; setiap cell kode didahului kotak **Alur data: Input →
 |---|---|
 | 0–3 | Peta alur data, import, load & kamus data, EDA (termasuk profil pekerjaan/gaji/status karyawan) |
 | **4** | **Uji statistik fitur**: Mann-Whitney U + rank-biserial, χ² + Cramér's V (koreksi Holm), Information Value & WoE, VIF |
-| 5–9 | Split stratified, pipeline binning + one-hot, 2 model, GridSearchCV, perbandingan CV |
+| 5–7 | Split stratified, pipeline binning + one-hot, definisi 2 model |
+| **7.1** | **Model statistik (sebelum cross-validation)**: dummy coding dengan kategori acuan, cek rank + **VIF/GVIF** (kolinearitas sempurna `employment_type` dibuang), regresi logistik statsmodels: **intercept, koefisien, SE, p-value (Holm), CI 95%, odds ratio**, uji likelihood-ratio, pseudo-R² McFadden, uji Wald per fitur, forest plot, **average marginal effect** (poin persen), uji linearitas **Box-Tidwell**, **Cook's distance** + uji ketahanan, **model ringkas** (uji LR model bersarang, AIC/BIC) |
+| 8–9 | GridSearchCV, perbandingan CV |
 | **10** | **Cross-validation lanjutan**: repeated stratified K-fold 5×5 (CI terkoreksi Nadeau-Bengio), corrected resampled t-test + Wilcoxon, nested CV, learning curve |
 | 11–13 | Pilih model, tuning threshold (out-of-fold), evaluasi test (confusion matrix, ROC, PR, lift) |
 | **14** | **Evaluasi statistik test**: bootstrap CI 1.000×, CI DeLong, uji DeLong & McNemar, KS, kalibrasi (reliability diagram, Brier skill score, Hosmer-Lemeshow, slope/intercept), trade-off approval vs bad rate & threshold berbasis biaya |
